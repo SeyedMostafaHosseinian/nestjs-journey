@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -15,11 +16,12 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.POSTGRES_DB,
       synchronize: true,
       logging: true,
-      entities: ['dist/entities/**/*.entity.js',],
+      entities: ['dist/**/*.entity.js',],
       migrations: ['dist/migrations/**/*.js'],
-      subscribers: [],
+      subscribers: [], 
       migrationsTableName: 'migrations', 
     }),
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [],
