@@ -6,7 +6,6 @@ import {
   Patch,
   Param,
   Delete,
-  Headers,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -17,10 +16,8 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto, @Headers() headers: any) {
-    console.log(createUserDto);
-    console.log(createUserDto instanceof CreateUserDto);
-    console.log(headers);
+  create(@Body() createUserDto: CreateUserDto) {
+    console.log('handling request');
     return this.usersService.create(createUserDto);
   }
 
