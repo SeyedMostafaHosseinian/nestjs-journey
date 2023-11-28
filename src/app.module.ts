@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
+import { EnvModule } from './log/env.module';
 
 @Module({
   imports: [
@@ -15,15 +16,16 @@ import { UsersModule } from './users/users.module';
       password: process.env.POSTGRES_PASSWORD + '',
       database: process.env.POSTGRES_DB,
       synchronize: true,
-      logging: true,
+      logging: false,
       entities: ['dist/**/*.entity.js',],
       migrations: ['dist/migrations/**/*.js'],
       subscribers: [], 
       migrationsTableName: 'migrations', 
     }),
+    EnvModule,
     UsersModule,
   ],
   controllers: [AppController],
   providers: [],
-})
+  })
 export class AppModule {}
