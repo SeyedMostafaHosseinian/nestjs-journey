@@ -5,7 +5,28 @@ import { UsersController } from './users.controller';
 
 @Module({
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [
+    UsersService,
+
+    // {
+    //   provide:'TOKEN_ONE',
+    //   useValue:'hello im a value provider'
+    // },
+
+    //factory provider
+    {
+      provide: 'PROVIDER_BY_USE_FACTORY',
+      useFactory: (envService: EnvService, optionalDependency?:any) => {
+        
+        return [envService.getEnv('NODE_ENV'), optionalDependency]
+      },
+      inject: [EnvService,{token:"TOKEN_ONE", optional:true}],
+    },
+    {
+      provide: 'ALIAS_USER_SERVICE_TOKEN',
+      useExisting: UsersService,
+    }
+  ],
 })
 export class UsersModule {
   constructor(private readonly envService: EnvService) {

@@ -1,9 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Scope } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
-@Injectable()
+@Injectable({
+  // scope: Scope.REQUEST
+})
 export class UsersService {
+  instanceID: string
+  constructor() {
+    this.instanceID = Math.random() * 1000 + ''
+    console.log(`
+      user service is instantiated
+
+      random number: ${this.instanceID}
+    
+    -----------------------------------
+    `)
+  }
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
