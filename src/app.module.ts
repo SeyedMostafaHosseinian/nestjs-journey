@@ -1,30 +1,18 @@
-import { Module, Scope } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { EnvModule } from './log/env.module';
 import { ConfigurationService } from './config/configuration.service';
 import { DevConfigurationService } from './config/dev-configuration.service';
 import { ProdConfigurationService } from './config/prod-configuration.service';
+import { dataSourceConfig } from './db/data-source';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: process.env?.DB_PORT ? +process.env?.DB_PORT : 5432,
-      username: process.env.DB_USERNAME,
-      password: process.env.POSTGRES_PASSWORD + '',
-      database: process.env.POSTGRES_DB,
-      synchronize: true,
-      logging: false,
-      entities: ['dist/**/*.entity.js'],
-      migrations: ['dist/migrations/**/*.js'],
-      subscribers: [],
-      migrationsTableName: 'migrations',
-    }),
+    TypeOrmModule.forRoot(dataSourceConfig as TypeOrmModuleOptions),
     EnvModule,
     UsersModule,
   ],
@@ -50,6 +38,6 @@ import { ProdConfigurationService } from './config/prod-configuration.service';
       inject: [],
     },
   ],
-  exports:[]
+  exports: [],
 })
 export class AppModule {}
