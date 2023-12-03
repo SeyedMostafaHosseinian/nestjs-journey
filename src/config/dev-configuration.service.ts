@@ -4,6 +4,6 @@ import { ConfigurationService } from './configuration.service';
 @Injectable()
 export class DevConfigurationService implements ConfigurationService {
     sayMode()  {
-        console.log('hello im DevConfigurationService')
+        // console.log('hello im DevConfigurationService')
     }
 }

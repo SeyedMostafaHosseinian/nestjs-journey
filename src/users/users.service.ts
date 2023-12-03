@@ -17,13 +17,13 @@ export class UsersService {
     private readonly userReposiory: Repository<UserEntity>,
   ) {
     this.instanceID = Math.random() * 1000 + '';
-    console.log(`
-      user service is instantiated
+    // console.log(`
+    //   user service is instantiated
 
-      random number: ${this.instanceID}
+    //   random number: ${this.instanceID}
     
-    -----------------------------------
-    `);
+    // -----------------------------------
+    // `);
   }
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';

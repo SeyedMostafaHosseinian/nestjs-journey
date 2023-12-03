@@ -7,8 +7,8 @@ export class AppController {
     @Inject('OBJECT-1') private readonly injectedValue: any,
     private readonly configService: ConfigurationService
     ) {
-    console.log(this.injectedValue);
-    console.log(process.env?.NODE_ENV);
+    // console.log(this.injectedValue);
+    // console.log(process.env?.NODE_ENV);
     this.configService.sayMode()
   }
 

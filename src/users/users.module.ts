@@ -32,6 +32,6 @@ import { UserEntity } from './entities/user.entity';
 })
 export class UsersModule {
   constructor(private readonly envService: EnvService) {
-    console.log(this.envService.getEnv('APP_NAME'));
+    // console.log(this.envService.getEnv('APP_NAME'));
   }
 }

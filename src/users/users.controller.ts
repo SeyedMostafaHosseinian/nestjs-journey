@@ -21,13 +21,13 @@ export class UsersController {
     @Inject('PROVIDER_BY_USE_FACTORY')
     private readonly factoryValue: any,
   ) {
-    console.log(this.factoryValue);
-    console.log(
-      'this.usersService === usersService2',
-      this.usersService === this.usersService2,
-    );
-    console.log(this.usersService.instanceID)
-    console.log(this.usersService2.instanceID)
+    // console.log(this.factoryValue);
+    // console.log(
+    //   'this.usersService === usersService2',
+    //   this.usersService === this.usersService2,
+    // );
+    // console.log(this.usersService.instanceID)
+    // console.log(this.usersService2.instanceID)
   }
 
   @Post()
