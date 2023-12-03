@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
@@ -8,6 +8,7 @@ import { ConfigurationService } from './config/configuration.service';
 import { DevConfigurationService } from './config/dev-configuration.service';
 import { ProdConfigurationService } from './config/prod-configuration.service';
 import { dataSourceConfig } from './db/data-source';
+import { LogMiddleware, logFunMiddleware } from './middlewares';
 
 @Module({
   imports: [
@@ -40,4 +41,12 @@ import { dataSourceConfig } from './db/data-source';
   ],
   exports: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      // .apply(LogMiddleware, logFunMiddleware)
+      // .exclude('users', {path:'tasks', method: RequestMethod.OPTIONS})
+      // .forRoutes({ path:'users', method: RequestMethod.GET })
+      // .forRoutes('*');
+  }
+}
