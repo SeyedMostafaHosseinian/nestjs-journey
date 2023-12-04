@@ -10,12 +10,6 @@ import { UserEntity } from './entities/user.entity';
   imports: [TypeOrmModule.forFeature([UserEntity])],
   providers: [
     UsersService,
-
-    // {
-    //   provide:'TOKEN_ONE',
-    //   useValue:'hello im a value provider'
-    // },
-
     //factory provider
     {
       provide: 'PROVIDER_BY_USE_FACTORY',
@@ -30,8 +24,4 @@ import { UserEntity } from './entities/user.entity';
     },
   ],
 })
-export class UsersModule {
-  constructor(private readonly envService: EnvService) {
-    // console.log(this.envService.getEnv('APP_NAME'));
-  }
-}
+export class UsersModule {}
