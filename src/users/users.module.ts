@@ -4,10 +4,11 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   controllers: [UsersController],
-  imports: [TypeOrmModule.forFeature([UserEntity])],
+  imports: [TypeOrmModule.forFeature([UserEntity]), TasksModule],
   providers: [
     UsersService,
     //factory provider
@@ -23,5 +24,6 @@ import { UserEntity } from './entities/user.entity';
       useExisting: UsersService,
     },
   ],
+  exports: [TasksModule]
 })
 export class UsersModule {}

@@ -8,7 +8,7 @@ import { ConfigurationService } from './config/configuration.service';
 import { DevConfigurationService } from './config/dev-configuration.service';
 import { ProdConfigurationService } from './config/prod-configuration.service';
 import { dataSourceConfig } from './db/data-source';
-import { LogMiddleware, logFunMiddleware } from './middlewares';
+import { AdminUsersModule } from './admin-users/admin-users.module';
 
 @Module({
   imports: [
@@ -16,6 +16,7 @@ import { LogMiddleware, logFunMiddleware } from './middlewares';
     TypeOrmModule.forRoot(dataSourceConfig as TypeOrmModuleOptions),
     EnvModule,
     UsersModule,
+    AdminUsersModule,
   ],
   controllers: [AppController],
   providers: [
